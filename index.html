@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Global Nomad – High-Fidelity Stays Worldwide</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <button class="logo-btn" onclick="resetFilters()">
+        <div class="logo-icon">
+          <i class="fas fa-globe"></i>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">Global Nomad</span>
+          <span class="logo-subtitle">Curated stays worldwide</span>
+        </div>
+      </button>
+
+      <div class="navbar-search-desktop">
+        <button class="search-pill">
+          <span>Where to next?</span>
+          <span class="divider"></span>
+          <span class="muted">Any week</span>
+          <span class="divider"></span>
+          <span class="muted">Add guests</span>
+          <span class="search-icon-wrapper">
+            <i class="fas fa-search"></i>
+          </span>
+        </button>
+      </div>
+
+      <div class="navbar-right">
+        <button class="list-stay-btn">List your stay</button>
+        <div class="profile-menu">
+          <i class="fas fa-bars"></i>
+          <div class="profile-avatar">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <p class="hero-badge">Global Nomad · Curated stays for everyone</p>
+        <h1 class="hero-title">
+          Stay like a local,
+          <span class="gradient-text"> anywhere on earth.</span>
+        </h1>
+        <p class="hero-description">
+          Glide between high-altitude retreats, desert skylines, coastal penthouses,
+          and metropolitan lofts. Handpicked spaces built for long stays and slow travel.
+        </p>
+      </div>
+
+      <!-- Floating Search Bar -->
+      <div class="floating-search-container">
+        <div class="floating-search-bar">
+          <div class="search-field">
+            <div class="search-icon-circle">
+              <i class="fas fa-search"></i>
+            </div>
+            <div class="search-label-group">
+              <label>Country</label>
+              <select id="country-select" onchange="handleCountryChange(this.value)">
+                <option value="PAKISTAN">Pakistan</option>
+                <option value="UAE">United Arab Emirates</option>
+                <option value="UK">United Kingdom</option>
+                <option value="USA">United States</option>
+                <option value="AUSTRALIA">Australia</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="search-field">
+            <div class="search-label-group">
+              <label>Region / City</label>
+              <select id="region-select" onchange="handleRegionChange(this.value)">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <div class="search-info">
+              <span class="info-label">Curated</span>
+              <span class="info-text">Handpicked stays in <strong id="vibe-text">High Altitude & Urban Culture</strong></span>
+            </div>
+            <button class="show-stays-btn">Show stays</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filter Bar Section -->
+    <section class="filter-section">
+      <div class="filter-header">
+        <h2>Explore by destination</h2>
+        <div class="filter-badge">
+          <i class="fas fa-flag"></i>
+          <span>Global Filters</span>
+        </div>
+      </div>
+
+      <div class="country-filters" id="country-filters">
+        <!-- Dynamically populated -->
+      </div>
+
+      <div class="region-filters" id="region-filters">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+
+    <!-- Listings Grid -->
+    <section class="listings-section">
+      <div class="listings-header">
+        <span>Showing <strong id="listing-count">0</strong> stays</span>
+        <span class="listings-filter-text" id="filter-text"></span>
+      </div>
+
+      <div class="listings-grid" id="listings-grid">
+        <!-- Dynamically populated -->
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
