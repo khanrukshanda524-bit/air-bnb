@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Global Nomad – High-Fidelity Stays Worldwide</title>
+  <title>Luxury Stays – Premium Accommodations Worldwide</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -13,29 +13,18 @@
     <div class="navbar-container">
       <button class="logo-btn" onclick="resetFilters()">
         <div class="logo-icon">
-          <i class="fas fa-globe"></i>
+          <i class="fas fa-home"></i>
         </div>
         <div class="logo-text">
-          <span class="logo-title">Global Nomad</span>
-          <span class="logo-subtitle">Curated stays worldwide</span>
+          <span class="logo-title">LuxuryStays</span>
         </div>
       </button>
 
-      <div class="navbar-search-desktop">
-        <button class="search-pill">
-          <span>Where to next?</span>
-          <span class="divider"></span>
-          <span class="muted">Any week</span>
-          <span class="divider"></span>
-          <span class="muted">Add guests</span>
-          <span class="search-icon-wrapper">
-            <i class="fas fa-search"></i>
-          </span>
-        </button>
-      </div>
-
       <div class="navbar-right">
-        <button class="list-stay-btn">List your stay</button>
+        <button class="list-property-btn" onclick="openPropertyModal()">
+          <i class="fas fa-plus"></i>
+          <span>List Your Property</span>
+        </button>
         <div class="profile-menu">
           <i class="fas fa-bars"></i>
           <div class="profile-avatar">
@@ -46,76 +35,49 @@
     </div>
   </header>
 
+  <!-- Hero Section with Dubai Skyline -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-overlay"></div>
+    
+    <!-- Glassmorphism Search Bar -->
+    <div class="hero-search-container">
+      <div class="glassmorphism-search-bar">
+        <div class="search-field-wrapper">
+          <div class="search-field">
+            <label>Destination</label>
+            <input type="text" id="destination-input" placeholder="Where are you going?" />
+          </div>
+          <div class="search-divider"></div>
+          <div class="search-field">
+            <label>Check in</label>
+            <input type="date" id="checkin-input" />
+          </div>
+          <div class="search-divider"></div>
+          <div class="search-field">
+            <label>Check out</label>
+            <input type="date" id="checkout-input" />
+          </div>
+          <div class="search-divider"></div>
+          <div class="search-field">
+            <label>Guests</label>
+            <input type="number" id="guests-input" placeholder="Add guests" min="1" />
+          </div>
+          <button class="search-btn">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Main Content -->
   <main class="main-content">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
-        <p class="hero-badge">Global Nomad · Curated stays for everyone</p>
-        <h1 class="hero-title">
-          Stay like a local,
-          <span class="gradient-text"> anywhere on earth.</span>
-        </h1>
-        <p class="hero-description">
-          Glide between high-altitude retreats, desert skylines, coastal penthouses,
-          and metropolitan lofts. Handpicked spaces built for long stays and slow travel.
-        </p>
-      </div>
 
-      <!-- Floating Search Bar -->
-      <div class="floating-search-container">
-        <div class="floating-search-bar">
-          <div class="search-field">
-            <div class="search-icon-circle">
-              <i class="fas fa-search"></i>
-            </div>
-            <div class="search-label-group">
-              <label>Country</label>
-              <select id="country-select" onchange="handleCountryChange(this.value)">
-                <option value="PAKISTAN">Pakistan</option>
-                <option value="UAE">United Arab Emirates</option>
-                <option value="UK">United Kingdom</option>
-                <option value="USA">United States</option>
-                <option value="AUSTRALIA">Australia</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="search-field">
-            <div class="search-label-group">
-              <label>Region / City</label>
-              <select id="region-select" onchange="handleRegionChange(this.value)">
-                <!-- Dynamically populated -->
-              </select>
-            </div>
-          </div>
-
-          <div class="search-actions">
-            <div class="search-info">
-              <span class="info-label">Curated</span>
-              <span class="info-text">Handpicked stays in <strong id="vibe-text">High Altitude & Urban Culture</strong></span>
-            </div>
-            <button class="show-stays-btn">Show stays</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Filter Bar Section -->
-    <section class="filter-section">
-      <div class="filter-header">
-        <h2>Explore by destination</h2>
-        <div class="filter-badge">
-          <i class="fas fa-flag"></i>
-          <span>Global Filters</span>
-        </div>
-      </div>
-
-      <div class="country-filters" id="country-filters">
-        <!-- Dynamically populated -->
-      </div>
-
-      <div class="region-filters" id="region-filters">
+    <!-- Country Flags Section -->
+    <section class="country-flags-section">
+      <div class="country-flags-container" id="country-flags-container">
         <!-- Dynamically populated -->
       </div>
     </section>
@@ -132,6 +94,124 @@
       </div>
     </section>
   </main>
+
+  <!-- Property Listing Modal -->
+  <div class="modal-overlay" id="property-modal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>List Your Property</h2>
+        <button class="modal-close" onclick="closePropertyModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <div class="modal-progress">
+        <div class="progress-step active" data-step="1">
+          <div class="step-number">1</div>
+          <span>Basic Info</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="2">
+          <div class="step-number">2</div>
+          <span>Details</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="3">
+          <div class="step-number">3</div>
+          <span>Photos</span>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="4">
+          <div class="step-number">4</div>
+          <span>Review</span>
+        </div>
+      </div>
+
+      <div class="modal-content">
+        <!-- Step 1: Basic Info -->
+        <div class="modal-step active" id="step-1">
+          <h3>Basic Information</h3>
+          <div class="form-group">
+            <label>Property Title</label>
+            <input type="text" id="property-title" placeholder="e.g., Modern Apartment in Downtown" />
+          </div>
+          <div class="form-group">
+            <label>Property Type</label>
+            <select id="property-type">
+              <option value="">Select type</option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Villa</option>
+              <option value="condo">Condo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Location</label>
+            <input type="text" id="property-location" placeholder="City, Country" />
+          </div>
+          <div class="form-group">
+            <label>Price per Night ($)</label>
+            <input type="number" id="property-price" placeholder="0" min="0" />
+          </div>
+        </div>
+
+        <!-- Step 2: Details -->
+        <div class="modal-step" id="step-2">
+          <h3>Property Details</h3>
+          <div class="form-group">
+            <label>Bedrooms</label>
+            <input type="number" id="property-bedrooms" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Bathrooms</label>
+            <input type="number" id="property-bathrooms" placeholder="0" min="0" />
+          </div>
+          <div class="form-group">
+            <label>Maximum Guests</label>
+            <input type="number" id="property-guests" placeholder="0" min="1" />
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="property-description" rows="5" placeholder="Describe your property..."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3: Photos -->
+        <div class="modal-step" id="step-3">
+          <h3>Property Photos</h3>
+          <div class="image-upload-area" id="image-upload-area">
+            <input type="file" id="image-input" multiple accept="image/*" style="display: none;" />
+            <div class="upload-placeholder" onclick="document.getElementById('image-input').click()">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <p>Click to upload images</p>
+              <span>or drag and drop</span>
+            </div>
+          </div>
+          <div class="uploaded-images" id="uploaded-images"></div>
+        </div>
+
+        <!-- Step 4: Review -->
+        <div class="modal-step" id="step-4">
+          <h3>Review Your Listing</h3>
+          <div class="review-summary" id="review-summary">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" id="prev-btn" onclick="previousStep()" style="display: none;">
+          Previous
+        </button>
+        <button class="btn-primary" id="next-btn" onclick="nextStep()">
+          Next
+        </button>
+        <button class="btn-primary" id="submit-btn" onclick="submitProperty()" style="display: none;">
+          Submit Listing
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -1,437 +1,138 @@
-// Data Constants
+// Country Data with Flags
 const COUNTRIES = [
-  {
-    code: "PAKISTAN",
-    label: "Pakistan",
-    vibe: "High Altitude & Urban Culture",
-    icon: "fas fa-mountain",
-    regions: [
-      { code: "HUNZA", label: "Hunza (Northern)" },
-      { code: "SKARDU", label: "Skardu (Northern)" },
-      { code: "LAHORE", label: "Lahore (Urban)" },
-      { code: "ISLAMABAD", label: "Islamabad (Urban)" }
-    ]
-  },
-  {
-    code: "UAE",
-    label: "United Arab Emirates",
-    vibe: "Luxury Skylines & Desert Culture",
-    icon: "fas fa-building",
-    regions: [
-      { code: "DUBAI", label: "Dubai (Luxury)" },
-      { code: "ABU_DHABI", label: "Abu Dhabi (Cultural)" },
-      { code: "SHARJAH", label: "Sharjah" }
-    ]
-  },
-  {
-    code: "UK",
-    label: "United Kingdom",
-    vibe: "Metropolitan & Highlands Escapes",
-    icon: "fas fa-landmark",
-    regions: [
-      { code: "LONDON", label: "London (Metropolitan)" },
-      { code: "MANCHESTER", label: "Manchester (Metropolitan)" },
-      { code: "SCOTLAND", label: "Scottish Highlands" }
-    ]
-  },
-  {
-    code: "USA",
-    label: "United States",
-    vibe: "Coasts & Iconic Skylines",
-    icon: "fas fa-city",
-    regions: [
-      { code: "NYC", label: "New York City (East Coast)" },
-      { code: "WEST_COAST", label: "West Coast" },
-      { code: "HOTSPOTS", label: "Tourist Hotspots" }
-    ]
-  },
-  {
-    code: "AUSTRALIA",
-    label: "Australia",
-    vibe: "Coastal Cities & Western Wilds",
-    icon: "fas fa-water",
-    regions: [
-      { code: "SYDNEY", label: "Sydney (Coastal)" },
-      { code: "GOLD_COAST", label: "Gold Coast (Coastal)" },
-      { code: "PERTH", label: "Perth (Western Australia)" }
-    ]
-  }
+  { code: "PAKISTAN", label: "Pakistan", flag: "🇵🇰", icon: "fas fa-mountain" },
+  { code: "CANADA", label: "Canada", flag: "🇨🇦", icon: "fas fa-snowflake" },
+  { code: "USA", label: "United States", flag: "🇺🇸", icon: "fas fa-city" },
+  { code: "UAE", label: "United Arab Emirates", flag: "🇦🇪", icon: "fas fa-building" },
+  { code: "UK", label: "United Kingdom", flag: "🇬🇧", icon: "fas fa-landmark" },
+  { code: "INDONESIA", label: "Indonesia", flag: "🇮🇩", icon: "fas fa-water" },
+  { code: "SOUTH_AFRICA", label: "South Africa", flag: "🇿🇦", icon: "fas fa-mountain" },
+  { code: "SAUDI_ARABIA", label: "Saudi Arabia", flag: "🇸🇦", icon: "fas fa-mosque" },
+  { code: "AUSTRALIA", label: "Australia", flag: "🇦🇺", icon: "fas fa-water" },
+  { code: "NEW_ZEALAND", label: "New Zealand", flag: "🇳🇿", icon: "fas fa-mountain" },
+  { code: "EU", label: "European Union", flag: "🇪🇺", icon: "fas fa-globe-europe" }
 ];
 
+// Sample Listings Data
 const LISTINGS = [
   {
-    id: "pk-hunza-01",
-    title: "Cliffside Glass Chalet",
-    country: "PAKISTAN",
-    region: "HUNZA",
-    locationLabel: "Hunza, Pakistan",
-    description: "Suspended over a valley with panoramic views of snow-capped peaks and terraced fields.",
-    pricePerNight: 220,
+    id: "1",
+    title: "Luxury Apartment in Downtown Dubai",
+    location: "Dubai, UAE",
+    price: 250,
     rating: 4.9,
-    reviewCount: 126,
-    images: ["hunza-1", "hunza-1b", "hunza-1c"],
-    featured: true
+    reviews: 128,
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800"
   },
   {
-    id: "pk-skardu-01",
-    title: "Lakefront Stone Retreat",
-    country: "PAKISTAN",
-    region: "SKARDU",
-    locationLabel: "Skardu, Pakistan",
-    description: "Warm stone villa perched on a mirror-like alpine lake, ideal for stargazing nights.",
-    pricePerNight: 195,
+    id: "2",
+    title: "Modern Loft in Manhattan",
+    location: "New York, USA",
+    price: 320,
     rating: 4.8,
-    reviewCount: 94,
-    images: ["skardu-1", "skardu-1b"]
+    reviews: 95,
+    image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800"
   },
   {
-    id: "pk-lahore-01",
-    title: "Heritage Haveli Loft",
-    country: "PAKISTAN",
-    region: "LAHORE",
-    locationLabel: "Lahore, Pakistan",
-    description: "Minimalist loft nested inside a restored Old City haveli with a private courtyard.",
-    pricePerNight: 140,
-    rating: 4.7,
-    reviewCount: 81,
-    images: ["lahore-1", "lahore-1b"]
-  },
-  {
-    id: "pk-isb-01",
-    title: "Margalla View Penthouse",
-    country: "PAKISTAN",
-    region: "ISLAMABAD",
-    locationLabel: "Islamabad, Pakistan",
-    description: "Sun-drenched penthouse overlooking the Margalla Hills with a private plunge pool.",
-    pricePerNight: 180,
-    rating: 4.85,
-    reviewCount: 103,
-    images: ["islamabad-1", "islamabad-1b"]
-  },
-  {
-    id: "uae-dubai-01",
-    title: "Skyline Infinity Suite",
-    country: "UAE",
-    region: "DUBAI",
-    locationLabel: "Dubai, UAE",
-    description: "Glass-wrapped suite with a floating infinity pool and uninterrupted Burj Khalifa views.",
-    pricePerNight: 620,
+    id: "3",
+    title: "Beachfront Villa in Sydney",
+    location: "Sydney, Australia",
+    price: 450,
     rating: 5.0,
-    reviewCount: 212,
-    images: ["dubai-1", "dubai-1b", "dubai-1c"],
-    featured: true
+    reviews: 156,
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800"
   },
   {
-    id: "uae-dubai-02",
-    title: "Palm Jumeirah Beach Villa",
-    country: "UAE",
-    region: "DUBAI",
-    locationLabel: "Dubai, UAE",
-    description: "Private beachfront villa on the Palm with a sunken lounge and direct sea access.",
-    pricePerNight: 780,
-    rating: 4.95,
-    reviewCount: 167,
-    images: ["dubai-2", "dubai-2b"]
+    id: "4",
+    title: "Historic Apartment in London",
+    location: "London, UK",
+    price: 280,
+    rating: 4.7,
+    reviews: 203,
+    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800"
   },
   {
-    id: "uae-abu-01",
-    title: "Louvre Inspired Residence",
-    country: "UAE",
-    region: "ABU_DHABI",
-    locationLabel: "Abu Dhabi, UAE",
-    description: "Art-forward apartment minutes from the Louvre Abu Dhabi with curated local pieces.",
-    pricePerNight: 430,
+    id: "5",
+    title: "Mountain View Chalet in Islamabad",
+    location: "Islamabad, Pakistan",
+    price: 120,
     rating: 4.9,
-    reviewCount: 88,
-    images: ["abudhabi-1", "abudhabi-1b"]
+    reviews: 87,
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800"
   },
   {
-    id: "uae-shj-01",
-    title: "Corniche Culture Loft",
-    country: "UAE",
-    region: "SHARJAH",
-    locationLabel: "Sharjah, UAE",
-    description: "Bright loft along the Corniche blending museum-district calm with waterfront views.",
-    pricePerNight: 260,
-    rating: 4.6,
-    reviewCount: 54,
-    images: ["sharjah-1"]
-  },
-  {
-    id: "uk-lon-01",
-    title: "Thames View Atelier",
-    country: "UK",
-    region: "LONDON",
-    locationLabel: "London, United Kingdom",
-    description: "Converted warehouse atelier with floor-to-ceiling windows over the River Thames.",
-    pricePerNight: 510,
-    rating: 4.93,
-    reviewCount: 201,
-    images: ["london-1", "london-1b"],
-    featured: true
-  },
-  {
-    id: "uk-man-01",
-    title: "Canal-Side Loft Studio",
-    country: "UK",
-    region: "MANCHESTER",
-    locationLabel: "Manchester, United Kingdom",
-    description: "Industrial-chic loft in a historic mill with exposed brick and canal views.",
-    pricePerNight: 280,
+    id: "6",
+    title: "Coastal Retreat in Cape Town",
+    location: "Cape Town, South Africa",
+    price: 180,
     rating: 4.8,
-    reviewCount: 77,
-    images: ["manchester-1"]
-  },
-  {
-    id: "uk-sco-01",
-    title: "Highlands Glass Cabin",
-    country: "UK",
-    region: "SCOTLAND",
-    locationLabel: "Scottish Highlands, United Kingdom",
-    description: "Remote glass cabin surrounded by heather and lochs, designed for off-grid serenity.",
-    pricePerNight: 350,
-    rating: 4.97,
-    reviewCount: 143,
-    images: ["scotland-1", "scotland-1b"]
-  },
-  {
-    id: "usa-nyc-01",
-    title: "SoHo Skyloft",
-    country: "USA",
-    region: "NYC",
-    locationLabel: "New York City, USA",
-    description: "Ultra-minimal SoHo loft with double-height windows and a private rooftop terrace.",
-    pricePerNight: 640,
-    rating: 4.92,
-    reviewCount: 189,
-    images: ["nyc-1", "nyc-1b"],
-    featured: true
-  },
-  {
-    id: "usa-west-01",
-    title: "Pacific Clifftop Villa",
-    country: "USA",
-    region: "WEST_COAST",
-    locationLabel: "Big Sur, USA",
-    description: "Cantilevered villa over the Pacific with frameless glass railings and firepit deck.",
-    pricePerNight: 720,
-    rating: 4.98,
-    reviewCount: 134,
-    images: ["westcoast-1"]
-  },
-  {
-    id: "usa-hot-01",
-    title: "Desert Mirage Pavilion",
-    country: "USA",
-    region: "HOTSPOTS",
-    locationLabel: "Palm Springs, USA",
-    description: "Mid-century pavilion with a reflective pool and mountain backdrop, perfect for retreats.",
-    pricePerNight: 410,
-    rating: 4.85,
-    reviewCount: 96,
-    images: ["palmsprings-1"]
-  },
-  {
-    id: "au-syd-01",
-    title: "Harbourline Penthouse",
-    country: "AUSTRALIA",
-    region: "SYDNEY",
-    locationLabel: "Sydney, Australia",
-    description: "Penthouse with wraparound balcony capturing both the Opera House and Harbour Bridge.",
-    pricePerNight: 690,
-    rating: 4.96,
-    reviewCount: 157,
-    images: ["sydney-1", "sydney-1b"]
-  },
-  {
-    id: "au-gc-01",
-    title: "Gold Coast Surf Villa",
-    country: "AUSTRALIA",
-    region: "GOLD_COAST",
-    locationLabel: "Gold Coast, Australia",
-    description: "Laid-back surf villa a few steps from the sand with an outdoor shower garden.",
-    pricePerNight: 330,
-    rating: 4.78,
-    reviewCount: 73,
-    images: ["goldcoast-1"]
-  },
-  {
-    id: "au-per-01",
-    title: "Perth Sunset Loft",
-    country: "AUSTRALIA",
-    region: "PERTH",
-    locationLabel: "Perth, Australia",
-    description: "Sunset-facing loft with warm timber interiors and views over the Swan River.",
-    pricePerNight: 310,
-    rating: 4.82,
-    reviewCount: 68,
-    images: ["perth-1"]
+    reviews: 142,
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800"
   }
 ];
 
 // State Management
-let activeCountry = "PAKISTAN";
-let activeRegion = null;
-let listingCarousels = {}; // Track carousel state per listing
+let currentStep = 1;
+let propertyData = {
+  title: "",
+  type: "",
+  location: "",
+  price: "",
+  bedrooms: "",
+  bathrooms: "",
+  guests: "",
+  description: "",
+  images: []
+};
 
 // Initialize App
 document.addEventListener("DOMContentLoaded", () => {
-  initializeCountryFilters();
-  initializeRegionFilters();
-  updateRegionSelect();
-  updateVibeText();
+  initializeCountryFlags();
   renderListings();
+  setupImageUpload();
+  setupDateInputs();
 });
 
-// Initialize Country Filters
-function initializeCountryFilters() {
-  const container = document.getElementById("country-filters");
+// Initialize Country Flags
+function initializeCountryFlags() {
+  const container = document.getElementById("country-flags-container");
   container.innerHTML = "";
-
-  COUNTRIES.forEach((country) => {
-    const btn = document.createElement("button");
-    btn.className = `country-filter-btn ${country.code === activeCountry ? "active" : ""}`;
-    btn.innerHTML = `
-      <div class="country-filter-icon">
-        <i class="${country.icon}"></i>
+  
+  COUNTRIES.forEach(country => {
+    const flagItem = document.createElement("div");
+    flagItem.className = "country-flag-item";
+    flagItem.onclick = () => filterByCountry(country.code);
+    
+    flagItem.innerHTML = `
+      <div class="country-flag-circle">
+        <span class="flag-icon">${country.flag}</span>
       </div>
-      <span>${country.label}</span>
+      <span class="country-flag-name">${country.label}</span>
     `;
-    btn.onclick = () => handleCountryChange(country.code);
-    container.appendChild(btn);
+    
+    container.appendChild(flagItem);
   });
 }
 
-// Initialize Region Filters
-function initializeRegionFilters() {
-  updateRegionFilters();
-}
-
-function updateRegionFilters() {
-  const container = document.getElementById("region-filters");
-  container.innerHTML = "";
-
-  const currentCountry = COUNTRIES.find((c) => c.code === activeCountry);
-  if (!currentCountry) return;
-
-  currentCountry.regions.forEach((region) => {
-    const btn = document.createElement("button");
-    btn.className = `region-filter-btn ${region.code === activeRegion ? "active" : ""}`;
-    btn.textContent = region.label;
-    btn.onclick = () => handleRegionChange(region.code);
-    container.appendChild(btn);
-  });
-}
-
-// Update Region Select Dropdown
-function updateRegionSelect() {
-  const select = document.getElementById("region-select");
-  const currentCountry = COUNTRIES.find((c) => c.code === activeCountry);
-  
-  select.innerHTML = "";
-  
-  if (currentCountry && currentCountry.regions.length > 0) {
-    currentCountry.regions.forEach((region) => {
-      const option = document.createElement("option");
-      option.value = region.code;
-      option.textContent = region.label;
-      if (region.code === activeRegion) {
-        option.selected = true;
-      }
-      select.appendChild(option);
-    });
-  }
-}
-
-// Update Vibe Text
-function updateVibeText() {
-  const currentCountry = COUNTRIES.find((c) => c.code === activeCountry);
-  const vibeText = document.getElementById("vibe-text");
-  if (vibeText && currentCountry) {
-    vibeText.textContent = currentCountry.vibe;
-  }
-}
-
-// Handle Country Change
-function handleCountryChange(countryCode) {
-  activeCountry = countryCode;
-  const currentCountry = COUNTRIES.find((c) => c.code === countryCode);
-  
-  // Auto-select first region
-  if (currentCountry && currentCountry.regions.length > 0) {
-    activeRegion = currentCountry.regions[0].code;
-  } else {
-    activeRegion = null;
-  }
-
-  // Update UI
-  initializeCountryFilters();
-  updateRegionFilters();
-  updateRegionSelect();
-  updateVibeText();
-  updateFilterText();
+// Filter by Country
+function filterByCountry(countryCode) {
+  console.log(`Filtering by ${countryCode}`);
+  // Add your filtering logic here
   renderListings();
-
-  // Update country select
-  document.getElementById("country-select").value = countryCode;
-}
-
-// Handle Region Change
-function handleRegionChange(regionCode) {
-  if (activeRegion === regionCode) {
-    activeRegion = null; // Toggle off if clicking same region
-  } else {
-    activeRegion = regionCode;
-  }
-
-  updateRegionFilters();
-  updateRegionSelect();
-  updateFilterText();
-  renderListings();
-}
-
-// Update Filter Text
-function updateFilterText() {
-  const text = document.getElementById("filter-text");
-  if (text) {
-    const currentCountry = COUNTRIES.find((c) => c.code === activeCountry);
-    let filterText = `Refined for ${currentCountry?.label || activeCountry}`;
-    if (activeRegion) {
-      const region = currentCountry?.regions.find((r) => r.code === activeRegion);
-      filterText += ` · ${region?.label || activeRegion}`;
-    }
-    text.textContent = filterText;
-  }
-}
-
-// Reset Filters
-function resetFilters() {
-  handleCountryChange("PAKISTAN");
-  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 // Render Listings
 function renderListings() {
   const container = document.getElementById("listings-grid");
   const countEl = document.getElementById("listing-count");
-
-  // Filter listings
-  const filtered = LISTINGS.filter((listing) => {
-    if (listing.country !== activeCountry) return false;
-    if (activeRegion && listing.region !== activeRegion) return false;
-    return true;
-  });
-
-  // Update count
+  
   if (countEl) {
-    countEl.textContent = filtered.length;
+    countEl.textContent = LISTINGS.length;
   }
-
-  // Clear container
+  
   container.innerHTML = "";
-
-  // Render listings
-  filtered.forEach((listing) => {
+  
+  LISTINGS.forEach(listing => {
     const card = createListingCard(listing);
     container.appendChild(card);
   });
@@ -442,90 +143,312 @@ function createListingCard(listing) {
   const card = document.createElement("div");
   card.className = "listing-card";
   
-  const hasMultipleImages = listing.images.length > 1;
-  const carouselId = `carousel-${listing.id}`;
-  listingCarousels[carouselId] = { currentIndex: 0, total: listing.images.length };
-
   card.innerHTML = `
     <div class="listing-image-container">
-      <div class="listing-image-placeholder" id="${carouselId}-image">
-        <span>${listing.locationLabel}</span>
-      </div>
+      <img src="${listing.image}" alt="${listing.title}" class="listing-image" />
       <button class="listing-heart-btn">
         <i class="far fa-heart"></i>
       </button>
-      ${hasMultipleImages ? `
-        <button class="listing-carousel-controls listing-carousel-prev" onclick="carouselPrev('${carouselId}')">
-          <i class="fas fa-chevron-left"></i>
-        </button>
-        <button class="listing-carousel-controls listing-carousel-next" onclick="carouselNext('${carouselId}')">
-          <i class="fas fa-chevron-right"></i>
-        </button>
-        <div class="listing-carousel-dots" id="${carouselId}-dots">
-          ${listing.images.map((_, idx) => `
-            <span class="listing-carousel-dot ${idx === 0 ? 'active' : ''}" data-index="${idx}"></span>
-          `).join('')}
-        </div>
-      ` : ''}
     </div>
     <div class="listing-info">
-      <div class="listing-title-group">
-        <h3 class="listing-title">${listing.title}</h3>
-        <p class="listing-location">${listing.locationLabel}</p>
-      </div>
+      <h3 class="listing-title">${listing.title}</h3>
+      <p class="listing-location">${listing.location}</p>
       <div class="listing-rating">
         <i class="fas fa-star"></i>
-        <span>${listing.rating.toFixed(2)}</span>
+        <span>${listing.rating}</span>
       </div>
     </div>
     <div class="listing-footer">
       <div class="listing-price">
-        <span class="listing-price-amount">$${listing.pricePerNight}</span>
-        <span class="listing-price-unit">night</span>
+        <span class="listing-price-amount">$${listing.price}</span>
+        <span class="listing-price-unit">/ night</span>
       </div>
-      <span class="listing-reviews">${listing.reviewCount.toLocaleString()} reviews</span>
+      <span class="listing-reviews">${listing.reviews} reviews</span>
     </div>
   `;
-
+  
   return card;
 }
 
-// Carousel Functions
-function carouselPrev(carouselId) {
-  const carousel = listingCarousels[carouselId];
-  if (!carousel) return;
-  
-  carousel.currentIndex = carousel.currentIndex === 0 
-    ? carousel.total - 1 
-    : carousel.currentIndex - 1;
-  
-  updateCarousel(carouselId);
+// Property Modal Functions
+function openPropertyModal() {
+  const modal = document.getElementById("property-modal");
+  modal.classList.add("active");
+  currentStep = 1;
+  updateModalStep();
 }
 
-function carouselNext(carouselId) {
-  const carousel = listingCarousels[carouselId];
-  if (!carousel) return;
-  
-  carousel.currentIndex = carousel.currentIndex === carousel.total - 1 
-    ? 0 
-    : carousel.currentIndex + 1;
-  
-  updateCarousel(carouselId);
+function closePropertyModal() {
+  const modal = document.getElementById("property-modal");
+  modal.classList.remove("active");
+  currentStep = 1;
+  propertyData = {
+    title: "",
+    type: "",
+    location: "",
+    price: "",
+    bedrooms: "",
+    bathrooms: "",
+    guests: "",
+    description: "",
+    images: []
+  };
+  updateModalStep();
+  resetForm();
 }
 
-function updateCarousel(carouselId) {
-  const carousel = listingCarousels[carouselId];
-  if (!carousel) return;
-  
-  const dots = document.querySelectorAll(`#${carouselId}-dots .listing-carousel-dot`);
-  dots.forEach((dot, idx) => {
-    if (idx === carousel.currentIndex) {
-      dot.classList.add("active");
+function nextStep() {
+  if (validateCurrentStep()) {
+    if (currentStep < 4) {
+      currentStep++;
+      updateModalStep();
+    }
+  }
+}
+
+function previousStep() {
+  if (currentStep > 1) {
+    currentStep--;
+    updateModalStep();
+  }
+}
+
+function updateModalStep() {
+  // Update progress indicators
+  document.querySelectorAll(".progress-step").forEach((step, index) => {
+    if (index + 1 <= currentStep) {
+      step.classList.add("active");
     } else {
-      dot.classList.remove("active");
+      step.classList.remove("active");
     }
   });
   
-  // In a real app, you'd update the image src here
-  // For now, the placeholder stays the same
+  // Update step content
+  document.querySelectorAll(".modal-step").forEach((step, index) => {
+    if (index + 1 === currentStep) {
+      step.classList.add("active");
+    } else {
+      step.classList.remove("active");
+    }
+  });
+  
+  // Update buttons
+  const prevBtn = document.getElementById("prev-btn");
+  const nextBtn = document.getElementById("next-btn");
+  const submitBtn = document.getElementById("submit-btn");
+  
+  prevBtn.style.display = currentStep > 1 ? "block" : "none";
+  nextBtn.style.display = currentStep < 4 ? "block" : "none";
+  submitBtn.style.display = currentStep === 4 ? "block" : "none";
+  
+  // Update review summary on step 4
+  if (currentStep === 4) {
+    updateReviewSummary();
+  }
+}
+
+function validateCurrentStep() {
+  switch (currentStep) {
+    case 1:
+      const title = document.getElementById("property-title").value;
+      const type = document.getElementById("property-type").value;
+      const location = document.getElementById("property-location").value;
+      const price = document.getElementById("property-price").value;
+      
+      if (!title || !type || !location || !price) {
+        alert("Please fill in all fields");
+        return false;
+      }
+      
+      propertyData.title = title;
+      propertyData.type = type;
+      propertyData.location = location;
+      propertyData.price = price;
+      return true;
+      
+    case 2:
+      const bedrooms = document.getElementById("property-bedrooms").value;
+      const bathrooms = document.getElementById("property-bathrooms").value;
+      const guests = document.getElementById("property-guests").value;
+      const description = document.getElementById("property-description").value;
+      
+      if (!bedrooms || !bathrooms || !guests || !description) {
+        alert("Please fill in all fields");
+        return false;
+      }
+      
+      propertyData.bedrooms = bedrooms;
+      propertyData.bathrooms = bathrooms;
+      propertyData.guests = guests;
+      propertyData.description = description;
+      return true;
+      
+    case 3:
+      if (propertyData.images.length === 0) {
+        alert("Please upload at least one image");
+        return false;
+      }
+      return true;
+      
+    default:
+      return true;
+  }
+}
+
+function updateReviewSummary() {
+  const summary = document.getElementById("review-summary");
+  summary.innerHTML = `
+    <div class="review-item">
+      <span class="review-item-label">Title:</span>
+      <span class="review-item-value">${propertyData.title}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Type:</span>
+      <span class="review-item-value">${propertyData.type}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Location:</span>
+      <span class="review-item-value">${propertyData.location}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Price per Night:</span>
+      <span class="review-item-value">$${propertyData.price}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Bedrooms:</span>
+      <span class="review-item-value">${propertyData.bedrooms}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Bathrooms:</span>
+      <span class="review-item-value">${propertyData.bathrooms}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Max Guests:</span>
+      <span class="review-item-value">${propertyData.guests}</span>
+    </div>
+    <div class="review-item">
+      <span class="review-item-label">Images:</span>
+      <span class="review-item-value">${propertyData.images.length} uploaded</span>
+    </div>
+  `;
+}
+
+function resetForm() {
+  document.getElementById("property-title").value = "";
+  document.getElementById("property-type").value = "";
+  document.getElementById("property-location").value = "";
+  document.getElementById("property-price").value = "";
+  document.getElementById("property-bedrooms").value = "";
+  document.getElementById("property-bathrooms").value = "";
+  document.getElementById("property-guests").value = "";
+  document.getElementById("property-description").value = "";
+  propertyData.images = [];
+  document.getElementById("uploaded-images").innerHTML = "";
+}
+
+function submitProperty() {
+  console.log("Submitting property:", propertyData);
+  alert("Property listing submitted successfully!");
+  closePropertyModal();
+  // In a real app, you would send this data to a server
+}
+
+// Image Upload Setup
+function setupImageUpload() {
+  const imageInput = document.getElementById("image-input");
+  const uploadedImages = document.getElementById("uploaded-images");
+  
+  imageInput.addEventListener("change", (e) => {
+    const files = Array.from(e.target.files);
+    
+    files.forEach(file => {
+      if (file.type.startsWith("image/")) {
+        const reader = new FileReader();
+        
+        reader.onload = (event) => {
+          const imageUrl = event.target.result;
+          propertyData.images.push(imageUrl);
+          
+          const imageItem = document.createElement("div");
+          imageItem.className = "uploaded-image-item";
+          imageItem.innerHTML = `
+            <img src="${imageUrl}" alt="Uploaded" />
+            <button class="remove-image" onclick="removeImage(${propertyData.images.length - 1})">
+              <i class="fas fa-times"></i>
+            </button>
+          `;
+          
+          uploadedImages.appendChild(imageItem);
+        };
+        
+        reader.readAsDataURL(file);
+      }
+    });
+    
+    // Reset input
+    imageInput.value = "";
+  });
+}
+
+function removeImage(index) {
+  propertyData.images.splice(index, 1);
+  renderUploadedImages();
+}
+
+function renderUploadedImages() {
+  const uploadedImages = document.getElementById("uploaded-images");
+  uploadedImages.innerHTML = "";
+  
+  propertyData.images.forEach((imageUrl, index) => {
+    const imageItem = document.createElement("div");
+    imageItem.className = "uploaded-image-item";
+    imageItem.innerHTML = `
+      <img src="${imageUrl}" alt="Uploaded" />
+      <button class="remove-image" onclick="removeImage(${index})">
+        <i class="fas fa-times"></i>
+      </button>
+    `;
+    uploadedImages.appendChild(imageItem);
+  });
+}
+
+// Setup Date Inputs
+function setupDateInputs() {
+  const checkinInput = document.getElementById("checkin-input");
+  const checkoutInput = document.getElementById("checkout-input");
+  
+  // Set minimum date to today
+  const today = new Date().toISOString().split("T")[0];
+  checkinInput.min = today;
+  checkoutInput.min = today;
+  
+  // Update checkout minimum when checkin changes
+  checkinInput.addEventListener("change", (e) => {
+    const checkinDate = new Date(e.target.value);
+    checkinDate.setDate(checkinDate.getDate() + 1);
+    checkoutInput.min = checkinDate.toISOString().split("T")[0];
+  });
+}
+
+// Search Functionality
+document.querySelector(".search-btn")?.addEventListener("click", () => {
+  const destination = document.getElementById("destination-input").value;
+  const checkin = document.getElementById("checkin-input").value;
+  const checkout = document.getElementById("checkout-input").value;
+  const guests = document.getElementById("guests-input").value;
+  
+  console.log("Search:", { destination, checkin, checkout, guests });
+  // Add your search logic here
+});
+
+// Close modal on overlay click
+document.getElementById("property-modal")?.addEventListener("click", (e) => {
+  if (e.target.id === "property-modal") {
+    closePropertyModal();
+  }
+});
+
+// Reset filters function
+function resetFilters() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
