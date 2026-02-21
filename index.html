@@ -12,6 +12,72 @@
   <!-- Toast Container -->
   <div class="toast-container" id="toast-container"></div>
 
+  <!-- =============================================
+       TASK 1: PROPERTY DETAIL MODAL
+  ============================================== -->
+  <div class="detail-overlay" id="detail-modal">
+    <div class="detail-container">
+
+      <!-- Header -->
+      <div class="detail-header">
+        <div class="detail-header-info">
+          <h2 class="detail-title" id="detail-title"></h2>
+          <div class="detail-meta">
+            <span class="detail-location"><i class="fas fa-map-marker-alt"></i> <span id="detail-location"></span></span>
+            <span class="detail-rating"><i class="fas fa-star"></i> <span id="detail-rating"></span></span>
+          </div>
+        </div>
+        <button class="detail-close" id="detail-close-btn" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Airbnb-style Image Gallery Grid -->
+      <div class="detail-gallery" id="detail-gallery">
+        <!-- Populated by JS: 1 large + up to 4 small -->
+      </div>
+
+      <!-- Price & Action Bar -->
+      <div class="detail-action-bar">
+        <div class="detail-price-block">
+          <span class="detail-price" id="detail-price"></span>
+          <span class="detail-price-label">/ night</span>
+        </div>
+        <button class="detail-book-btn btn-pressable">
+          <i class="fas fa-calendar-check"></i> Reserve Now
+        </button>
+      </div>
+
+      <!-- Scrollable Body: Description + Reviews -->
+      <div class="detail-body">
+
+        <!-- Description -->
+        <div class="detail-section">
+          <h3 class="detail-section-title">About this place</h3>
+          <p class="detail-description" id="detail-description"></p>
+        </div>
+
+        <div class="detail-divider"></div>
+
+        <!-- Reviews Section -->
+        <div class="detail-section">
+          <div class="detail-reviews-header">
+            <h3 class="detail-section-title">
+              <i class="fas fa-star"></i>
+              <span id="detail-rating-big"></span>
+              &nbsp;·&nbsp;
+              <span id="detail-review-count"></span> reviews
+            </h3>
+          </div>
+          <div class="detail-reviews-grid" id="detail-reviews-grid">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
@@ -63,7 +129,6 @@
             <input type="date" id="checkout-input" />
           </div>
           <div class="search-divider"></div>
-          <!-- Guest Counter Stepper -->
           <div class="search-field">
             <label>Guests</label>
             <div class="guest-counter">
@@ -96,23 +161,27 @@
     </section>
 
     <!-- Listings Grid -->
-    <section class="listings-section">
+    <!-- TASK 2: location-bg-collage is absolutely positioned behind cards -->
+    <section class="listings-section" id="listings-section">
+      <div class="location-bg-collage" id="location-bg-collage">
+        <!-- Populated by JS when a country is selected -->
+      </div>
+
       <div class="listings-header">
         <span>Showing <strong id="listing-count">0</strong> stays</span>
         <span class="listings-filter-text" id="filter-text"></span>
       </div>
 
       <div class="listings-grid" id="listings-grid">
-        <!-- Skeleton loaders shown on init, then replaced with real cards -->
+        <!-- Dynamically populated -->
       </div>
     </section>
   </main>
 
-  <!-- Property Listing Modal -->
+  <!-- Property Listing Modal (existing, untouched) -->
   <div class="modal-overlay" id="property-modal">
     <div class="modal-container">
 
-      <!-- Thin Progress Bar at the very top -->
       <div class="modal-thin-progress">
         <div class="modal-thin-progress-fill" id="modal-thin-progress-fill"></div>
       </div>
@@ -147,7 +216,6 @@
       </div>
 
       <div class="modal-content">
-        <!-- Step 1: Basic Info -->
         <div class="modal-step active" id="step-1">
           <h3>Basic Information</h3>
           <div class="form-group">
@@ -174,7 +242,6 @@
           </div>
         </div>
 
-        <!-- Step 2: Details -->
         <div class="modal-step" id="step-2">
           <h3>Property Details</h3>
           <div class="form-group">
@@ -195,7 +262,6 @@
           </div>
         </div>
 
-        <!-- Step 3: Photos -->
         <div class="modal-step" id="step-3">
           <h3>Property Photos</h3>
           <div class="image-upload-area" id="image-upload-area">
@@ -209,12 +275,9 @@
           <div class="uploaded-images" id="uploaded-images"></div>
         </div>
 
-        <!-- Step 4: Review -->
         <div class="modal-step" id="step-4">
           <h3>Review Your Listing</h3>
-          <div class="review-summary" id="review-summary">
-            <!-- Dynamically populated -->
-          </div>
+          <div class="review-summary" id="review-summary"></div>
         </div>
       </div>
 
