@@ -8,6 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
   <!-- Navbar -->
   <header class="navbar">
     <div class="navbar-container">
@@ -21,7 +25,7 @@
       </button>
 
       <div class="navbar-right">
-        <button class="list-property-btn" onclick="openPropertyModal()">
+        <button class="list-property-btn btn-pressable" onclick="openPropertyModal()">
           <i class="fas fa-plus"></i>
           <span>List Your Property</span>
         </button>
@@ -39,7 +43,7 @@
   <section class="hero-section">
     <div class="hero-background"></div>
     <div class="hero-overlay"></div>
-    
+
     <!-- Glassmorphism Search Bar -->
     <div class="hero-search-container">
       <div class="glassmorphism-search-bar">
@@ -59,11 +63,20 @@
             <input type="date" id="checkout-input" />
           </div>
           <div class="search-divider"></div>
+          <!-- Guest Counter Stepper -->
           <div class="search-field">
             <label>Guests</label>
-            <input type="number" id="guests-input" placeholder="Add guests" min="1" />
+            <div class="guest-counter">
+              <button class="guest-btn" id="guests-minus" onclick="changeGuests(-1)" disabled aria-label="Remove guest">
+                <i class="fas fa-minus"></i>
+              </button>
+              <span class="guest-count" id="guests-display">1</span>
+              <button class="guest-btn" id="guests-plus" onclick="changeGuests(1)" aria-label="Add guest">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
           </div>
-          <button class="search-btn">
+          <button class="search-btn btn-pressable" id="search-btn">
             <i class="fas fa-search"></i>
             <span>Search</span>
           </button>
@@ -90,7 +103,7 @@
       </div>
 
       <div class="listings-grid" id="listings-grid">
-        <!-- Dynamically populated -->
+        <!-- Skeleton loaders shown on init, then replaced with real cards -->
       </div>
     </section>
   </main>
@@ -98,13 +111,19 @@
   <!-- Property Listing Modal -->
   <div class="modal-overlay" id="property-modal">
     <div class="modal-container">
+
+      <!-- Thin Progress Bar at the very top -->
+      <div class="modal-thin-progress">
+        <div class="modal-thin-progress-fill" id="modal-thin-progress-fill"></div>
+      </div>
+
       <div class="modal-header">
         <h2>List Your Property</h2>
-        <button class="modal-close" onclick="closePropertyModal()">
+        <button class="modal-close" onclick="closePropertyModal()" aria-label="Close modal">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      
+
       <div class="modal-progress">
         <div class="progress-step active" data-step="1">
           <div class="step-number">1</div>
@@ -168,7 +187,7 @@
           </div>
           <div class="form-group">
             <label>Maximum Guests</label>
-            <input type="number" id="property-guests" placeholder="0" min="1" />
+            <input type="number" id="property-guests" placeholder="0" min="1" max="10" />
           </div>
           <div class="form-group">
             <label>Description</label>
@@ -200,14 +219,14 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn-secondary" id="prev-btn" onclick="previousStep()" style="display: none;">
-          Previous
+        <button class="btn-secondary btn-pressable" id="prev-btn" onclick="previousStep()" style="display: none;">
+          <i class="fas fa-arrow-left"></i> Previous
         </button>
-        <button class="btn-primary" id="next-btn" onclick="nextStep()">
-          Next
+        <button class="btn-primary btn-pressable" id="next-btn" onclick="nextStep()">
+          Next <i class="fas fa-arrow-right"></i>
         </button>
-        <button class="btn-primary" id="submit-btn" onclick="submitProperty()" style="display: none;">
-          Submit Listing
+        <button class="btn-primary btn-pressable" id="submit-btn" onclick="submitProperty()" style="display: none;">
+          <i class="fas fa-check"></i> Submit Listing
         </button>
       </div>
     </div>
