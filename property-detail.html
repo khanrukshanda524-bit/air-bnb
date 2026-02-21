@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Detail – LuxuryStays</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="property-detail.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body class="detail-page">
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- ── NAVBAR ──────────────────────────────────────────── -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="index.html" class="logo-btn" style="text-decoration:none;">
+        <div class="logo-icon"><i class="fas fa-home"></i></div>
+        <div class="logo-text"><span class="logo-title">LuxuryStays</span></div>
+      </a>
+
+      <div class="navbar-right">
+        <a href="index.html" class="pd-back-btn btn-pressable">
+          <i class="fas fa-arrow-left"></i>
+          <span>All Stays</span>
+        </a>
+        <div class="profile-menu">
+          <i class="fas fa-bars"></i>
+          <div class="profile-avatar"><i class="fas fa-user"></i></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── MAIN CONTENT ──────────────────────────────────── -->
+  <main class="pd-main" id="pd-main">
+
+    <!-- Loading State (shown while JS resolves property) -->
+    <div class="pd-loading" id="pd-loading">
+      <div class="pd-loading-spinner"><i class="fas fa-circle-notch fa-spin"></i></div>
+      <p>Loading property…</p>
+    </div>
+
+    <!-- Error State -->
+    <div class="pd-error" id="pd-error" style="display:none;">
+      <div class="pd-error-icon"><i class="fas fa-exclamation-triangle"></i></div>
+      <h2>Property Not Found</h2>
+      <p>We couldn't find the property you're looking for.</p>
+      <a href="index.html" class="pd-error-btn btn-pressable">
+        <i class="fas fa-home"></i> Back to Home
+      </a>
+    </div>
+
+    <!-- ── DETAIL CONTENT (populated by JS) ── -->
+    <div class="pd-content" id="pd-content" style="display:none;">
+
+      <!-- Hero Title Bar -->
+      <div class="pd-hero-bar">
+        <div class="pd-hero-info">
+          <h1 class="pd-title" id="pd-title"></h1>
+          <div class="pd-meta">
+            <span class="pd-meta-item">
+              <i class="fas fa-star pd-star"></i>
+              <strong id="pd-rating"></strong>
+            </span>
+            <span class="pd-meta-sep">·</span>
+            <span class="pd-meta-item" id="pd-review-count-meta"></span>
+            <span class="pd-meta-sep">·</span>
+            <span class="pd-meta-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <span id="pd-location"></span>
+            </span>
+          </div>
+        </div>
+        <button class="pd-share-btn btn-pressable" id="pd-heart-btn" aria-label="Save to favorites">
+          <i class="far fa-heart" id="pd-heart-icon"></i>
+          <span id="pd-heart-label">Save</span>
+        </button>
+      </div>
+
+      <!-- ── IMAGE GALLERY ─────────────────────────────── -->
+      <div class="pd-gallery" id="pd-gallery">
+        <!-- JS populates: 1 main + 4 thumbs -->
+      </div>
+
+      <!-- ── TWO-COLUMN LAYOUT ──────────────────────────── -->
+      <div class="pd-body">
+
+        <!-- LEFT: Description + Amenities + Reviews -->
+        <div class="pd-left">
+
+          <!-- Quick stats bar -->
+          <div class="pd-stats">
+            <div class="pd-stat">
+              <i class="fas fa-door-open"></i>
+              <span id="pd-bedrooms"></span>
+            </div>
+            <div class="pd-stat">
+              <i class="fas fa-bath"></i>
+              <span id="pd-bathrooms"></span>
+            </div>
+            <div class="pd-stat">
+              <i class="fas fa-users"></i>
+              <span id="pd-guests"></span>
+            </div>
+          </div>
+
+          <div class="pd-divider"></div>
+
+          <!-- Description -->
+          <section class="pd-section">
+            <h2 class="pd-section-title">About this place</h2>
+            <p class="pd-description" id="pd-description"></p>
+          </section>
+
+          <div class="pd-divider"></div>
+
+          <!-- Amenities -->
+          <section class="pd-section">
+            <h2 class="pd-section-title">What this place offers</h2>
+            <div class="pd-amenities" id="pd-amenities">
+              <!-- JS populates -->
+            </div>
+          </section>
+
+          <div class="pd-divider"></div>
+
+          <!-- Reviews -->
+          <section class="pd-section" id="pd-reviews-section">
+            <h2 class="pd-section-title">
+              <i class="fas fa-star pd-star"></i>
+              <span id="pd-rating-reviews"></span>
+              &nbsp;·&nbsp;
+              <span id="pd-review-count"></span> reviews
+            </h2>
+            <div class="pd-reviews-grid" id="pd-reviews-grid">
+              <!-- JS populates -->
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT: Booking Card (sticky) -->
+        <aside class="pd-right">
+          <div class="pd-booking-card">
+            <div class="pd-booking-price">
+              <span class="pd-price" id="pd-price"></span>
+              <span class="pd-price-label">/ night</span>
+            </div>
+
+            <div class="pd-booking-rating">
+              <i class="fas fa-star pd-star"></i>
+              <span id="pd-booking-rating"></span>
+              &nbsp;·&nbsp;
+              <span id="pd-booking-reviews"></span> reviews
+            </div>
+
+            <form class="pd-booking-form" id="pd-booking-form" onsubmit="submitBooking(event)">
+              <div class="pd-form-row">
+                <div class="pd-form-group">
+                  <label for="bk-name">Full Name</label>
+                  <input type="text" id="bk-name" placeholder="Huzaifa Khan" required />
+                </div>
+                <div class="pd-form-group">
+                  <label for="bk-email">Email</label>
+                  <input type="email" id="bk-email" placeholder="you@example.com" required />
+                </div>
+              </div>
+
+              <div class="pd-form-row">
+                <div class="pd-form-group">
+                  <label for="bk-checkin">Check-in</label>
+                  <input type="date" id="bk-checkin" required />
+                </div>
+                <div class="pd-form-group">
+                  <label for="bk-checkout">Check-out</label>
+                  <input type="date" id="bk-checkout" required />
+                </div>
+              </div>
+
+              <div class="pd-form-group">
+                <label for="bk-guests">Guests</label>
+                <div class="guest-counter">
+                  <button type="button" class="guest-btn" id="bk-minus" onclick="changeBkGuests(-1)" disabled aria-label="Remove guest">
+                    <i class="fas fa-minus"></i>
+                  </button>
+                  <span class="guest-count" id="bk-guests-display">1</span>
+                  <button type="button" class="guest-btn" id="bk-plus" onclick="changeBkGuests(1)" aria-label="Add guest">
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Price breakdown (shown after dates selected) -->
+              <div class="pd-price-breakdown" id="pd-price-breakdown" style="display:none;">
+                <div class="pd-breakdown-row">
+                  <span id="bd-nights-label"></span>
+                  <span id="bd-nights-total"></span>
+                </div>
+                <div class="pd-breakdown-row pd-breakdown-fee">
+                  <span>Service fee</span>
+                  <span id="bd-fee"></span>
+                </div>
+                <div class="pd-breakdown-row pd-breakdown-total">
+                  <span>Total</span>
+                  <span id="bd-total"></span>
+                </div>
+              </div>
+
+              <button type="submit" class="pd-book-btn btn-pressable">
+                <i class="fas fa-calendar-check"></i> Book Now
+              </button>
+
+              <p class="pd-booking-note">You won't be charged yet</p>
+            </form>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ── LIGHTBOX ─────────────────────────────────────── -->
+  <div class="gallery-lightbox" id="gallery-lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">
+      <i class="fas fa-times"></i>
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="Gallery photo" />
+    <div class="lightbox-controls">
+      <button class="lightbox-btn" onclick="lightboxNav(-1)" aria-label="Previous">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <span class="lightbox-counter" id="lightbox-counter">1 / 1</span>
+      <button class="lightbox-btn" onclick="lightboxNav(1)" aria-label="Next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="property-detail.js"></script>
+</body>
+</html>

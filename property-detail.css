@@ -1,0 +1,610 @@
+/* ============================================================
+   property-detail.css  —  Styles for property-detail.html
+   Inherits CSS variables and utility classes from styles.css.
+============================================================ */
+
+/* ── Page base ── */
+.detail-page {
+  background: var(--slate-50);
+}
+
+/* ── Back button in navbar ── */
+.pd-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border: 1.5px solid var(--slate-300);
+  border-radius: 24px;
+  background: transparent;
+  color: var(--slate-700);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.pd-back-btn:hover {
+  border-color: var(--slate-900);
+  background: var(--slate-900);
+  color: var(--white);
+}
+
+/* ── Main wrapper ── */
+.pd-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+/* ── Loading / Error states ── */
+.pd-loading,
+.pd-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 16px;
+  color: var(--slate-500);
+}
+
+.pd-loading-spinner {
+  font-size: 40px;
+  color: var(--primary);
+}
+
+.pd-error-icon {
+  font-size: 48px;
+  color: var(--primary);
+}
+
+.pd-error h2 {
+  font-size: 26px;
+  color: var(--slate-900);
+}
+
+.pd-error p {
+  color: var(--slate-500);
+}
+
+.pd-error-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px 28px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ── Hero title bar ── */
+.pd-hero-bar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.pd-title {
+  font-size: clamp(22px, 3.5vw, 30px);
+  font-weight: 700;
+  color: var(--slate-900);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.pd-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--slate-600);
+}
+
+.pd-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pd-star { color: #FF385C; }
+
+.pd-meta-sep { color: var(--slate-400); }
+
+/* Heart / Save button */
+.pd-share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border: 1.5px solid var(--slate-300);
+  border-radius: 24px;
+  background: transparent;
+  color: var(--slate-700);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.pd-share-btn:hover {
+  border-color: var(--slate-900);
+}
+
+.pd-share-btn.saved {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+/* ── Gallery ── */
+.pd-gallery {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 420px;
+  margin-bottom: 36px;
+}
+
+.pd-gallery-main {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.pd-gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s var(--ease-fluid);
+}
+
+.pd-gallery-main:hover img {
+  transform: scale(1.03);
+}
+
+.pd-gallery-thumbs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+}
+
+.pd-gallery-thumb {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+.pd-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s var(--ease-fluid);
+}
+
+.pd-gallery-thumb:hover img {
+  transform: scale(1.05);
+}
+
+/* "View all photos" overlay on last thumb */
+.pd-gallery-view-all {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.48);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ── Two-column body ── */
+.pd-body {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+}
+
+/* ── Left column ── */
+.pd-left { min-width: 0; }
+
+/* Quick stats */
+.pd-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.pd-stat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--slate-700);
+}
+
+.pd-stat i {
+  color: var(--slate-500);
+  font-size: 17px;
+  width: 20px;
+}
+
+/* Divider */
+.pd-divider {
+  height: 1px;
+  background: var(--slate-200);
+  margin: 28px 0;
+}
+
+/* Section */
+.pd-section { margin-bottom: 4px; }
+
+.pd-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--slate-900);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Description */
+.pd-description {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--slate-600);
+  max-width: 640px;
+}
+
+/* Amenities grid */
+.pd-amenities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.pd-amenity-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.pd-amenity-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.pd-amenity-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--slate-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pd-amenity-icon i {
+  font-size: 15px;
+  color: var(--primary);
+}
+
+.pd-amenity-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--slate-700);
+}
+
+/* Reviews grid */
+.pd-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+
+.pd-review-card {
+  background: var(--white);
+  border: 1px solid var(--slate-200);
+  border-radius: 16px;
+  padding: 20px;
+  animation: reviewFadeIn 0.45s both;
+}
+
+@keyframes reviewFadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.pd-review-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.pd-review-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), #FF8C6B);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.pd-review-author-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.pd-review-author {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--slate-900);
+}
+
+.pd-review-date {
+  font-size: 12px;
+  color: var(--slate-400);
+  margin-top: 2px;
+}
+
+.pd-review-stars {
+  color: var(--primary);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.pd-review-stars i.far {
+  color: var(--slate-300);
+}
+
+.pd-review-comment {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--slate-600);
+  font-style: italic;
+}
+
+/* ── Right column — Booking Card ── */
+.pd-right {
+  position: sticky;
+  top: 96px;
+}
+
+.pd-booking-card {
+  background: var(--white);
+  border: 1.5px solid var(--slate-200);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow-soft);
+}
+
+.pd-booking-price {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.pd-price {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--slate-900);
+}
+
+.pd-price-label {
+  font-size: 14px;
+  color: var(--slate-500);
+}
+
+.pd-booking-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--slate-600);
+  margin-bottom: 20px;
+}
+
+/* Booking form */
+.pd-booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pd-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pd-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.pd-form-group label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--slate-500);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pd-form-group input,
+.pd-form-group select {
+  padding: 10px 12px;
+  border: 1.5px solid var(--slate-200);
+  border-radius: 10px;
+  font-size: 14px;
+  color: var(--slate-900);
+  background: var(--slate-50);
+  width: 100%;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.pd-form-group input:focus,
+.pd-form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: var(--ring-primary);
+  background: var(--white);
+}
+
+/* Price breakdown */
+.pd-price-breakdown {
+  background: var(--slate-50);
+  border: 1px solid var(--slate-200);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pd-breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: var(--slate-600);
+}
+
+.pd-breakdown-fee {
+  padding-top: 6px;
+  border-top: 1px dashed var(--slate-200);
+  color: var(--slate-500);
+}
+
+.pd-breakdown-total {
+  padding-top: 6px;
+  border-top: 1.5px solid var(--slate-300);
+  font-weight: 700;
+  color: var(--slate-900);
+  font-size: 15px;
+}
+
+/* Book Now button */
+.pd-book-btn {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 18px rgba(255,56,92,0.35);
+  transition: box-shadow 0.2s, transform 0.12s;
+}
+
+.pd-book-btn:hover {
+  box-shadow: 0 6px 28px rgba(255,56,92,0.5);
+  transform: translateY(-1px);
+}
+
+.pd-booking-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--slate-400);
+  margin-top: -4px;
+}
+
+/* ── Lightbox (shared with styles.css) ─────── */
+/* Styles for .gallery-lightbox, .lightbox-img, etc.
+   are already defined in styles.css and reused here. */
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+  .pd-body {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .pd-right {
+    position: static;
+  }
+
+  .pd-gallery {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .pd-gallery-main {
+    height: 280px;
+  }
+
+  .pd-gallery-thumbs {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    height: 90px;
+  }
+}
+
+@media (max-width: 640px) {
+  .pd-main {
+    padding: 20px 16px 60px;
+  }
+
+  .pd-hero-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .pd-gallery-thumbs {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 80px);
+    height: auto;
+  }
+
+  .pd-amenities {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pd-reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pd-form-row {
+    grid-template-columns: 1fr;
+  }
+}
